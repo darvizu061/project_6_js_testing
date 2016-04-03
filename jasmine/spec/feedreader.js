@@ -103,18 +103,22 @@ $(function() {
          */
         
         beforeEach(function(done){
+    
             /* Load the first feed starting at index 0 */
             loadFeed(0, function(){
                 oldContent = $('.header-title').text() + $('.feed').find('.entry').text().replace(/ +/g, " ");
+            
+            
+                /* Load the second feed starting at index 1 */
+                loadFeed(1, function(){
+                    newContent = $('.header-title').text() + $('.feed').find('.entry').text().replace(/ +/g, " ");
+                    
+                    done();
+                });
 
             });
             
-            /* Load the second feed starting at index 1 */
-            loadFeed(1, function(){
-                newContent = $('.header-title').text() + $('.feed').find('.entry').text().replace(/ +/g, " ");
-                
-                done();
-            });
+            
         });
         
         it('should load diffrent content', function(done){
